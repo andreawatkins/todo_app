@@ -15,9 +15,16 @@ export default function CreateTodo ({user, dispatch}) {
     <div>Author: <b>{user}</b></div>
     <div>
     <label htmlFor="create-title">Title:</label>
+    <div>
     <input type="text" value={title} onChange={handleTitle} name="create-title" id="create-title" />
     </div>
-    <textarea value={description} onChange={handleDescription} />
+    </div>
+    
+    <label htmlFor="create-description">Description:</label>
+    <div>
+    <textarea value={description} onChange={handleDescription} name = "create-description" id="create-description" />
+    
+    </div>
     <input type="submit" value="Create" disabled={title.length === 0}/>
     </form>
     )
