@@ -1,41 +1,39 @@
 import { useState } from 'react'
 
+
 export default function Todo ({ title, description, author, created}) {
 
-    const [checked, setChecked] = useState(false)
-    const [completed, setCompleted] = useState("N/A");
+    const [check, setCheck] = useState(false)
+    const [status, setStatus] = useState("");
 
-    const handleCheck = (event) => {
+    const handleCheckbox = (event) => {
         if(event.target.checked){
-            setCompleted((new Date(Date.now())).toString());
+            setStatus(new Date(Date.now()).toString());
         }
         else{
-            setCompleted("N/A");
+            setStatus("");
         }
 
-        setChecked(!checked)
+        setCheck(!check)
     }
 
     return (
         <div>
             <div>
-                <h2>{title}</h2>
-                <small>Author: <b>{author}</b></small>
-            </div>
-            <div>
+                
+                <h3>{title}</h3>
                 <p>{description}</p>
-
+                
             </div>
+          
             <div>
+                <small>Author: <b>{author}</b> on <b> {created} </b> </small>
                 <br/>
-                <small>Date Created: <b> {created} </b></small>
-                <br/>
-                <small>Status: <b>{checked ? "Complete" : "Incomplete"}</b></small>
-                <br/>
-                <small>Date Finished: <b>{completed}</b></small>
+                <small>Status: <b>{check ? "Completed on "   : "Incomplete"}</b></small>
+                <small>{status}</small>
             </div>
 
-            <input id="check" type="checkbox" onChange={handleCheck}/>
+            <input id="check" type="checkbox" onChange={handleCheckbox}/>
         </div>
     )
 }

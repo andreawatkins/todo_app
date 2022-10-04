@@ -12,6 +12,7 @@ if(user){
     return(
         <>
         <Login dispatch = {dispatch} />
+        <div/>
         <Register dispatch = {dispatch}/>
         </>
     )

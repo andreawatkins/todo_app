@@ -7,15 +7,10 @@ export default function CreateTodo ({user, dispatch}) {
     
     function handleTitle (evt) { setTitle(evt.target.value) }
     function handleDescription (evt) { setDescription(evt.target.value) }
-    function handleCreate () {
    
-   
-
-    
-}   
     return (
 
-    <form onSubmit={e => {e.preventDefault(); dispatch({ type: "TODO_CREATE", title, description, author: user, created: (new Date(Date.now())).toString(), id: uuidv4() });
+    <form onSubmit={e => {e.preventDefault(); dispatch({ type: "CREATE_TODO", title, description, author: user, created: (new Date(Date.now())).toString(), id: uuidv4() });
     }}>    
     <div>Author: <b>{user}</b></div>
     <div>

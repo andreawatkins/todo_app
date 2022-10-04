@@ -12,7 +12,7 @@ function userReducer(state, action) {
   
   function todoReducer(state, action) {
     switch (action.type) {
-      case "TODO_CREATE":
+      case "CREATE_TODO":
         const newTodo = { title: action.title, description: action.description, author: action.author, created: action.created, id: action.id}
         return [newTodo, ...state];
       default:

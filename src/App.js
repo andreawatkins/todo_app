@@ -24,8 +24,8 @@ function App() {
       id: uuidv4(),
     }
    ]
-  const [user, setUser] = useState('')
-  const [todos, setTodos] = useState(firstTodos)
+  //const [user, setUser] = useState('')
+  //const [todos, setTodos] = useState(firstTodos)
   
   const [state, dispatch] = useReducer(appReducer, {
     user: "",
