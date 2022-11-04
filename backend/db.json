@@ -1,0 +1,48 @@
+{
+  "todos": [
+    {
+      "title": "Do the dishes",
+      "description": "Wash all dishes",
+      "author": "andrea123@gmail.com",
+      "created": "Fri Nov 04 2022 16:39:56 GMT-0500 (Central Daylight Time)",
+      "checked": true,
+      "status": "Fri Nov 04 2022 16:51:52 GMT-0500 (Central Daylight Time)",
+      "id": 1
+    },
+    {
+      "title": "Go to the bank",
+      "description": "Deposit check at the bank",
+      "author": "andrea123@gmail.com",
+      "created": "Fri Nov 04 2022 16:55:12 GMT-0500 (Central Daylight Time)",
+      "checked": false,
+      "status": "",
+      "id": 2
+    },
+    {
+      "title": "Walk the dog",
+      "description": "Take the dog on a walk",
+      "author": "andrea123@gmail.com",
+      "created": "Fri Nov 04 2022 16:55:30 GMT-0500 (Central Daylight Time)",
+      "checked": true,
+      "status": "Fri Nov 04 2022 16:55:33 GMT-0500 (Central Daylight Time)",
+      "id": 3
+    }
+  ],
+  "users": [
+    {
+      "email": "andrea2cool@email.com",
+      "password": "$2a$10$1IcDy5NqQeD7yDe.O2F9z.7Cv2jaqL32nG6nfD.MxVtkD2S8Pa8vq",
+      "id": 3
+    },
+    {
+      "email": "andrea123@gmail.com",
+      "password": "$2a$10$b57/hHJ0gcopEa0C4HAL9uhB2tuAFyQlySkiJKnbIv7vr81pF51v.",
+      "id": 4
+    },
+    {
+      "email": "andrea_921@gmail.com",
+      "password": "$2a$10$kYIhT44ZKaVafoEWpHZLBeLmtIjIEHqpyC09juiOyG7agdHmUvv5a",
+      "id": 5
+    }
+  ]
+}
