@@ -3,7 +3,7 @@ import { useResource } from "react-request-hook";
 import { v4 as uuidv4 } from "uuid";
 
 import UserBar from "./user/UserBar";
-import PostList from "./todo/TodoList";
+import TodoList from "./todo/TodoList";
 import CreateTodo from "./todo/CreateTodo";
 
 import appReducer from "./reducers";
@@ -11,33 +11,34 @@ import appReducer from "./reducers";
 import { StateContext } from "./contexts";
 
 function App() {
-  const initialTodos = [];
-
   const [state, dispatch] = useReducer(appReducer, {
     user: "",
-    todos: initialTodos,
+    todos: [],
   });
 
   const { user } = state;
 
   useEffect(() => {
     if (user) {
-      document.title = `${user}’s Todos`;
+      document.title = `${user.username}’s Todos`;
     } else {
       document.title = "Todos";
     }
   }, [user]);
 
   const [todos, getTodos] = useResource(() => ({
-    url: "/todos",
+    url: "/todo",
     method: "get",
+    headers: { Authorization: `${state?.user?.access_token}` },
   }));
 
-  useEffect(getTodos, []);
+  useEffect(() => {
+    getTodos();
+  }, [state?.user?.access_token]);
 
   useEffect(() => {
-    if (todos && todos.data) {
-      dispatch({ type: "FETCH_TODOS", posts: todos.data.reverse() });
+    if (todos && todos.isLoading === false && todos.data) {
+      dispatch({ type: "FETCH_TODOS", todos: todos.data.todos.reverse() });
     }
   }, [todos]);
 
@@ -47,7 +48,7 @@ function App() {
         <React.Suspense fallback={"Loading..."}>
           <UserBar />
         </React.Suspense>
-        <PostList />
+        {todos?.isLoading && "Todos loading..."} <TodoList />
         {state.user && <CreateTodo />}
       </StateContext.Provider>
     </div>

@@ -2,9 +2,12 @@ function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN":
     case "REGISTER":
-      return action.username;
+      return {
+        username: action.username,
+        access_token: action.access_token,
+      };
     case "LOGOUT":
-      return "";
+      return null;
     default:
       return state;
   }
@@ -13,7 +16,9 @@ function userReducer(state, action) {
 function todoReducer(state, action) {
   switch (action.type) {
     case "FETCH_TODOS":
-      return action.posts;
+      return action.todos;
+    case "CLEAR_TODOS":
+      return [];
     case "CREATE_TODO":
       const newTodo = {
         title: action.title,

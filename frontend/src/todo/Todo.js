@@ -9,6 +9,7 @@ export default function Todo({
   created,
   checked,
   status,
+  _id,
 }) {
   const [check, setCheck] = useState(false);
   const { state, dispatch } = useContext(StateContext);

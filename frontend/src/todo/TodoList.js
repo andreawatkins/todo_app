@@ -37,48 +37,51 @@ export default function TodoList() {
         <h2>My Todos: </h2>
       </div>
 
-      {todos.map((t, i) => (
-        <>
-          <div>
-            <div style={styles}>
-              <Todo {...t} key={t.id} />
+      {todos.length === 0 && <h2> No posts found. </h2>}
+      {todos !== undefined &&
+        todos.length > 0 &&
+        todos.map((t, i) => (
+          <>
+            <div>
+              <div style={styles}>
+                <Todo {...t} key={t._id} />
+                <input
+                  id="check"
+                  type="checkbox"
+                  checked={t.checked}
+                  onChange={() => {
+                    handleToggle({
+                      id: t.id,
+                      checked: !t.checked,
+                      status:
+                        t.checked === false
+                          ? new Date(Date.now()).toString()
+                          : "",
+                    });
+                    dispatch({
+                      type: "TOGGLE_TODO",
+                      id: t.id,
+                      checked: t.checked,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+            <div style={padding}>
               <input
-                id="check"
-                type="checkbox"
-                checked={t.checked}
-                onChange={() => {
-                  handleToggle({
+                type="submit"
+                value={"Delete " + '"' + t.title + '"'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleDeleted({
                     id: t.id,
-                    checked: !t.checked,
-                    status:
-                      t.checked === false
-                        ? new Date(Date.now()).toString()
-                        : "",
                   });
-                  dispatch({
-                    type: "TOGGLE_TODO",
-                    id: t.id,
-                    checked: t.checked,
-                  });
+                  dispatch({ type: "DELETE_TODO", id: t.id });
                 }}
               />
             </div>
-          </div>
-          <div style={padding}>
-            <input
-              type="submit"
-              value={"Delete " + '"' + t.title + '"'}
-              onClick={(e) => {
-                e.preventDefault();
-                handleDeleted({
-                  id: t.id,
-                });
-                dispatch({ type: "DELETE_TODO", id: t.id });
-              }}
-            />
-          </div>
-        </>
-      ))}
+          </>
+        ))}
     </div>
   );
 }

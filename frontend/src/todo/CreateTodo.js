@@ -13,20 +13,21 @@ export default function CreateTodo() {
   const { user } = state;
 
   const [todo, createTodo] = useResource(
-    ({ title, description, author, created, checked, status }) => ({
-      url: "/todos",
+    ({ title, description, created, checked, status, username }) => ({
+      url: "/todo",
       method: "post",
-      data: { title, description, author, created, checked, status },
+      headers: { Authorization: `${state.user.access_token}` },
+      data: { title, description, checked, status, created, username },
     })
   );
 
   function handleCreate() {
-    createTodo({ title, description, author: user });
+    createTodo({ title, description, author: user.username });
     dispatch({
       type: "CREATE_TODO",
       title: title,
       description: description,
-      author: user,
+      username: user.username,
       created: todo.data.created,
       checked: false,
       status: "Incomplete",
@@ -49,9 +50,10 @@ export default function CreateTodo() {
         title: todo.data.title,
         description: todo.data.description,
         checked: todo.data.checked,
+        created: todo.data.created,
         status: todo.data.status,
-        author: todo.data.author,
-        id: todo.data.id,
+        id: todo.data._id,
+        username: user.username,
       });
     }
   }, [todo]);
@@ -68,15 +70,15 @@ export default function CreateTodo() {
           createTodo({
             title,
             description,
-            author: user,
+            username: user.username,
             created: new Date(Date.now()).toString(),
             checked: false,
-            status: "",
+            status: "incomplete",
           });
         }}
       >
         <div>
-          Author: <b>{user}</b>
+          Author: <b>{user.username}</b>
         </div>
         <div>
           <label htmlFor="create-title">Title:</label>

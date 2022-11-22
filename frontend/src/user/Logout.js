@@ -11,7 +11,7 @@ export default function Logout() {
         dispatch({ type: "LOGOUT" });
       }}
     >
-      HELLO, <b>{user}</b>
+      HELLO, <b>{user.username}</b>
       <input type="submit" value="Logout" />
     </form>
   );
