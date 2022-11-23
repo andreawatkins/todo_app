@@ -4,22 +4,7 @@ const jwt = require("jsonwebtoken");
 const Todo = require("../models/Todo");
 const User = require("../models/User");
 
-//const privateKey = process.env.JWT_PRIVATE_KEY;
-const privateKey = `-----BEGIN RSA PRIVATE KEY-----
-MIICWwIBAAKBgQC05Q13YI+O3HvX8+F76Mjiq7eCL1iFD1w01p7WvgFsdGh2Mh3B
-Hu1sK92p5ooF6E3s5jC2w3J5JGgtWQNqkA9kKhx3uLTyXvXPxSZWQy3xrI+LKME1
-LMcFltWEME5/O9ogLHomvc6Hhs50dmSjiaIpc+CIQMjgR3t+viQyMD77xwIDAQAB
-AoGAUBZEswB+LlqxPbfMsYYrQieSNEHv5+EYCpCmfB5dFP4orYOcpr6hkM2O8sSN
-gPYLYgG7uX6odLfIo6MQHyKunQIzsm/UGx0nYXubQzE8tfyorhChTdXcZH13CP0q
-kUhjYod2Clje+NVRDdkHYbFCvxeBy880kPSkSIS33N4AV0kCQQD7B21Ub9jnafXV
-emH1HrVdGcDCa72CpHg2PXvflUTkNuBZmDVzA91sxyk28k6yQ1ACi56jvs9RjbQH
-/+v3N3fzAkEAuHoVxMw+AnggUUz567gNpqb0dxXkuXnn6V9gN6KBMQx5MUHnR1/U
-PyghvBrl0MadJNiMnCUW+eNn3f3u4ESV3QJACEEfRDaFUF64mbNzgybmWdBd+Uan
-raMQ3N+6sghrgoGXcPrDTyviXRBTd54SHmR+PgcvST0d/hWFxPmSXceyJwJAA2Li
-UWl6Xes8lKF4GPaY8Y0xAZqaRzlQo30HtB28h1z2QIw4JZxBtiMTc3N+8nUi31FG
-S3t2z4F4H6AQqXc41QJAZjkgim0Dd2fsbSSJCeDFrXjru0EVcmcmPFBvIn24dlMN
-TaQdBIIIBFr32Bm7wc1k5xmJ2tL2ekrAEo55i0EEBQ==
------END RSA PRIVATE KEY-----`;
+const privateKey = process.env.JWT_PRIVATE_KEY;
 
 router.use(function (req, res, next) {
   if (req.header("Authorization")) {
