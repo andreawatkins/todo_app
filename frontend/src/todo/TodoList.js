@@ -19,15 +19,19 @@ export default function TodoList() {
     }
   }
 
-  const [toggle, handleToggle] = useResource(({ id, checked, status }) => ({
-    url: `/todos/${id}`,
-    method: "patch",
-    data: { checked, status },
-  }));
+  const [toggle, handleToggle] = useResource(
+    ({ id, title, description, author, checked, created, status }) => ({
+      url: `/todo/${id}`,
+      method: "put",
+      data: { title, description, author, created, checked, status },
+      headers: { Authorization: `${state.user.access_token}` },
+    })
+  );
 
   const [deleted, handleDeleted] = useResource(({ id }) => ({
-    url: `/todos/${id}`,
+    url: `/todo/${id}`,
     method: "delete",
+    headers: { Authorization: `${state.user.access_token}` },
   }));
 
   return (
@@ -50,9 +54,15 @@ export default function TodoList() {
                   type="checkbox"
                   checked={t.checked}
                   onChange={() => {
+                    const currentId = t._id;
+                    const currentChecked = t.checked;
                     handleToggle({
-                      id: t.id,
+                      id: currentId,
+                      title: t.title,
+                      description: t.description,
                       checked: !t.checked,
+                      created: t.created,
+                      author: t.author,
                       status:
                         t.checked === false
                           ? new Date(Date.now()).toString()
@@ -60,8 +70,8 @@ export default function TodoList() {
                     });
                     dispatch({
                       type: "TOGGLE_TODO",
-                      id: t.id,
-                      checked: t.checked,
+                      id: currentId,
+                      checked: currentChecked,
                     });
                   }}
                 />
@@ -74,9 +84,9 @@ export default function TodoList() {
                 onClick={(e) => {
                   e.preventDefault();
                   handleDeleted({
-                    id: t.id,
+                    id: t._id,
                   });
-                  dispatch({ type: "DELETE_TODO", id: t.id });
+                  dispatch({ type: "DELETE_TODO", id: t._id });
                 }}
               />
             </div>

@@ -53,7 +53,8 @@ export default function CreateTodo() {
         created: todo.data.created,
         status: todo.data.status,
         id: todo.data._id,
-        username: user.username,
+        username: todo.data.username,
+        author: user.username,
       });
     }
   }, [todo]);

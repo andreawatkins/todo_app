@@ -26,20 +26,22 @@ function todoReducer(state, action) {
         author: action.author,
         created: action.created,
         checked: false,
-        id: action.id,
+        _id: action.id,
       };
       return [newTodo, ...state];
     case "DELETE_TODO":
-      return state.filter((item) => item.id !== action.id);
+      return state.filter((item) => item._id !== action.id);
 
     case "TOGGLE_TODO":
       const todos = state.map((item) => {
-        if (item.id === action.id) {
+        if (item._id === action.id) {
           const editedTodo = {
             ...item,
             checked: !item.checked,
             status:
-              item.checked === false ? new Date(Date.now()).toString() : "",
+              item.checked === false
+                ? new Date(Date.now()).toString()
+                : "incomplete",
           };
           return editedTodo;
         }

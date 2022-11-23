@@ -90,7 +90,7 @@ router.put("/:id", async function (req, res, next) {
   const update = {
     title: req.body.title,
     description: req.body.description,
-    author: req.body.author,
+    author: req.payload.id,
     created: req.body.created,
     checked: req.body.checked,
     status: req.body.finished,
